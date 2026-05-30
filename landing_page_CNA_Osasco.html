@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CNA Osasco Centro — Cursos de Idiomas e Cultura</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --red:#C8102E;--red-dark:#9B0B22;--red-light:#F5E6E9;
+    --gold:#F0A500;--gold-light:#FFF8E6;
+    --dark:#0D0D0D;--gray:#4A4A4A;--light:#F8F7F4;--white:#FFFFFF;
+    --font-display:'Playfair Display',serif;
+    --font-body:'DM Sans',sans-serif;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--font-body);color:var(--dark);background:var(--white);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid #e8e8e8;padding:0 5%;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-badge{width:42px;height:42px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-family:var(--font-display);font-size:18px;font-weight:900;letter-spacing:-1px;}
+  .logo-text{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--dark);}
+  .logo-sub{font-size:11px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-top:-2px;}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{text-decoration:none;color:var(--gray);font-size:14px;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--red);}
+  .nav-cta{background:var(--red);color:white!important;padding:9px 20px;border-radius:6px;font-size:14px;font-weight:600;transition:background .2s!important;}
+  .nav-cta:hover{background:var(--red-dark)!important;color:white!important;}
+
+  /* HERO */
+  .hero{min-height:100vh;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 5% 60px;}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D0D0D 0%,#1a0a0f 50%,#0D0D0D 100%);}
+  .hero-accent{position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,0.18) 0%,transparent 70%);}
+  .hero-accent2{position:absolute;bottom:-150px;left:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,165,0,0.1) 0%,transparent 70%);}
+  .hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.3);color:#ff6b87;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+  .hero h1{font-family:var(--font-display);font-size:clamp(38px,4.5vw,58px);font-weight:900;color:white;line-height:1.1;margin-bottom:20px;}
+  .hero h1 span{color:var(--gold);}
+  .hero-desc{color:#a0a0a0;font-size:16px;line-height:1.7;margin-bottom:36px;max-width:480px;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{background:var(--red);color:white;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+  .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);}
+  .btn-outline{background:transparent;color:white;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,0.25);transition:all .2s;}
+  .btn-outline:hover{border-color:white;background:rgba(255,255,255,0.05);}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+  .hero-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:16px 20px;}
+  .hero-stat-num{font-family:var(--font-display);font-size:28px;font-weight:900;color:var(--gold);}
+  .hero-stat-label{font-size:12px;color:#888;margin-top:2px;}
+
+  /* Hero visual */
+  .hero-visual{display:flex;flex-direction:column;gap:14px;}
+  .lang-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:16px;transition:transform .3s;}
+  .lang-card:hover{transform:translateX(6px);}
+  .lang-flag{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+  .lang-info h3{color:white;font-size:15px;font-weight:600;margin-bottom:3px;}
+  .lang-info p{color:#888;font-size:12px;}
+  .lang-badge{margin-left:auto;background:rgba(200,16,46,0.2);color:#ff6b87;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
+
+  /* SECTION SHARED */
+  section{padding:80px 5%;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-tag{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
+  .section-title{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);font-weight:700;color:var(--dark);margin-bottom:16px;line-height:1.2;}
+  .section-desc{font-size:16px;color:var(--gray);line-height:1.7;max-width:560px;}
+
+  /* CURSOS */
+  #cursos{background:var(--light);}
+  .cursos-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:20px;flex-wrap:wrap;}
+  .cursos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+  .curso-card{background:white;border-radius:14px;overflow:hidden;border:1px solid #ebebeb;transition:all .25s;}
+  .curso-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.1);}
+  .curso-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;}
+  .curso-body{padding:20px;}
+  .curso-body h3{font-size:17px;font-weight:600;margin-bottom:6px;}
+  .curso-body p{font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:14px;}
+  .curso-body .tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-right:4px;margin-bottom:4px;}
+  .tag-red{background:var(--red-light);color:var(--red);}
+  .tag-gold{background:var(--gold-light);color:#a06800;}
+  .tag-blue{background:#e8f0fe;color:#1a56db;}
+  .tag-green{background:#e8f5e9;color:#1b5e20;}
+
+  /* EVENTOS */
+  #eventos{background:white;}
+  .eventos-header{margin-bottom:48px;}
+  .eventos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
+  .evento-card{border-radius:14px;overflow:hidden;border:1px solid #ebebeb;transition:all .25s;}
+  .evento-card:hover{box-shadow:0 12px 32px rgba(0,0,0,0.09);}
+  .evento-header{padding:24px;display:flex;align-items:flex-start;gap:16px;}
+  .evento-date{background:var(--red);color:white;border-radius:8px;padding:8px 12px;text-align:center;min-width:50px;flex-shrink:0;}
+  .evento-date .day{font-family:var(--font-display);font-size:22px;font-weight:900;line-height:1;}
+  .evento-date .month{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+  .evento-info h3{font-size:16px;font-weight:600;margin-bottom:5px;}
+  .evento-info p{font-size:13px;color:var(--gray);line-height:1.5;}
+  .evento-footer{padding:14px 24px;background:var(--light);display:flex;align-items:center;justify-content:space-between;}
+  .evento-footer span{font-size:12px;color:var(--gray);}
+  .evento-footer a{font-size:12px;color:var(--red);font-weight:600;text-decoration:none;}
+
+  /* GALERIA */
+  #galeria{background:var(--dark);padding:80px 5%;}
+  #galeria .section-title{color:white;}
+  #galeria .section-tag{color:var(--gold);}
+  #galeria .section-desc{color:#a0a0a0;}
+  .galeria-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px;}
+  .galeria-item{border-radius:10px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative;cursor:pointer;transition:transform .25s;}
+  .galeria-item:hover{transform:scale(1.03);}
+  .galeria-item:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;min-height:280px;}
+  .galeria-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;padding:20px 14px 12px;font-size:12px;font-weight:600;}
+
+  /* DEPOIMENTOS */
+  #depoimentos{background:var(--light);}
+  .dep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:40px;}
+  .dep-card{background:white;border-radius:14px;padding:24px;border:1px solid #ebebeb;}
+  .dep-stars{color:var(--gold);font-size:14px;margin-bottom:12px;}
+  .dep-text{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:16px;font-style:italic;}
+  .dep-author{display:flex;align-items:center;gap:10px;}
+  .dep-avatar{width:38px;height:38px;border-radius:50%;background:var(--red);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+  .dep-name{font-size:14px;font-weight:600;}
+  .dep-course{font-size:12px;color:var(--gray);}
+
+  /* CONTATO */
+  #contato{background:white;}
+  .contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:48px;}
+  .contato-info h3{font-size:20px;font-weight:600;margin-bottom:20px;}
+  .info-item{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+  .info-icon{width:40px;height:40px;background:var(--red-light);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:18px;flex-shrink:0;}
+  .info-item h4{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:3px;}
+  .info-item p{font-size:13px;color:var(--gray);}
+  .form-group{margin-bottom:16px;}
+  .form-group label{display:block;font-size:13px;font-weight:600;color:var(--dark);margin-bottom:6px;}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:var(--font-body);font-size:14px;color:var(--dark);background:white;transition:border-color .2s;outline:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red);}
+  .form-group textarea{height:100px;resize:vertical;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .btn-form{width:100%;background:var(--red);color:white;padding:13px;border-radius:8px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:var(--font-body);transition:background .2s;margin-top:4px;}
+  .btn-form:hover{background:var(--red-dark);}
+  .form-note{font-size:12px;color:var(--gray);text-align:center;margin-top:10px;}
+
+  /* FOOTER */
+  footer{background:var(--dark);padding:48px 5% 28px;color:#a0a0a0;}
+  .footer-inner{max-width:1100px;margin:0 auto;}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px;}
+  .footer-brand .logo-text{color:white;}
+  .footer-brand p{font-size:13px;line-height:1.7;margin-top:12px;color:#888;}
+  .footer-col h4{color:white;font-size:14px;font-weight:600;margin-bottom:14px;}
+  .footer-col a{display:block;font-size:13px;color:#888;text-decoration:none;margin-bottom:8px;transition:color .2s;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-bottom{border-top:1px solid #222;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;flex-wrap:wrap;gap:10px;}
+  .footer-bottom p{color:#666;}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .fade-up{animation:fadeUp .6s ease forwards;}
+  .delay-1{animation-delay:.15s;}
+  .delay-2{animation-delay:.3s;}
+  .delay-3{animation-delay:.45s;}
+
+  /* WHATSAPP FLOAT */
+  .wa-float{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);text-decoration:none;transition:transform .2s;}
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:28px;height:28px;fill:white;}
+
+  @media(max-width:768px){
+    .hero-inner{grid-template-columns:1fr;gap:40px;}
+    .hero-visual{display:none;}
+    .contato-grid{grid-template-columns:1fr;}
+    .galeria-grid{grid-template-columns:1fr 1fr;}
+    .galeria-item:first-child{grid-column:span 2;}
+    .footer-top{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .form-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-badge">CNA</div>
+      <div>
+        <div class="logo-text">CNA Osasco</div>
+        <div class="logo-sub">Centro · Idiomas & Cultura</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#cursos">Cursos</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#contato" class="nav-cta">Matricule-se</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-accent2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag fade-up">&#127758; Há mais de 50 anos no Brasil</div>
+      <h1 class="fade-up delay-1">Aprenda idiomas.<br/>Explore o <span>mundo.</span></h1>
+      <p class="hero-desc fade-up delay-2">No CNA Osasco Centro, oferecemos cursos de inglês, espanhol, francês, robótica e inteligência artificial para todas as idades. Venha fazer parte da maior rede de escolas de idiomas do Brasil.</p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="#contato" class="btn-primary">Quero me matricular</a>
+        <a href="#cursos" class="btn-outline">Ver cursos</a>
+      </div>
+      <div class="hero-stats fade-up delay-3">
+        <div class="hero-stat">
+          <div class="hero-stat-num">200+</div>
+          <div class="hero-stat-label">Alunos matriculados</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">8 anos</div>
+          <div class="hero-stat-label">Servindo Osasco</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">5+</div>
+          <div class="hero-stat-label">Eventos culturais/ano</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">950</div>
+          <div class="hero-stat-label">Seguidores no Instagram</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="lang-card">
+        <div class="lang-flag" style="background:rgba(200,16,46,0.2);">🇺🇸</div>
+        <div class="lang-info">
+          <h3>Inglês</h3>
+          <p>Kids, Teens & Adults · Todos os níveis</p>
+        </div>
+        <span class="lang-badge">Popular</span>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag" style="background:rgba(240,165,0,0.2);">🇪🇸</div>
+        <div class="lang-info">
+          <h3>Espanhol</h3>
+          <p>Básico ao avançado · Certificação</p>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag" style="background:rgba(26,86,219,0.2);">🤖</div>
+        <div class="lang-info">
+          <h3>Robótica & IA</h3>
+          <p>Tecnologia para o futuro · Juvenil</p>
+        </div>
+        <span class="lang-badge">Novo</span>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag" style="background:rgba(27,94,32,0.2);">💻</div>
+        <div class="lang-info">
+          <h3>Programação</h3>
+          <p>Lógica e desenvolvimento · Kids & Teens</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section id="cursos">
+  <div class="section-inner">
+    <div class="cursos-header">
+      <div>
+        <p class="section-tag">O que oferecemos</p>
+        <h2 class="section-title">Nossos cursos</h2>
+        <p class="section-desc">Cursos para todas as idades e objetivos. Do básico ao avançado, presencial e com professores especializados.</p>
+      </div>
+    </div>
+    <div class="cursos-grid">
+      <div class="curso-card">
+        <div class="curso-img" style="background:#fff0f2;">🇺🇸</div>
+        <div class="curso-body">
+          <h3>Inglês</h3>
+          <p>O curso mais completo para crianças, adolescentes e adultos. Foco em conversação e gramática com metodologia CNA exclusiva.</p>
+          <span class="tag tag-red">Kids</span>
+          <span class="tag tag-red">Teens</span>
+          <span class="tag tag-red">Adults</span>
+        </div>
+      </div>
+      <div class="curso-card">
+        <div class="curso-img" style="background:#fff8e6;">🇪🇸</div>
+        <div class="curso-body">
+          <h3>Espanhol</h3>
+          <p>Aprenda o segundo idioma mais falado das Américas. Ideal para negócios, viagens e certificações internacionais.</p>
+          <span class="tag tag-gold">Básico</span>
+          <span class="tag tag-gold">Avançado</span>
+        </div>
+      </div>
+      <div class="curso-card">
+        <div class="curso-img" style="background:#e8f0fe;">🤖</div>
+        <div class="curso-body">
+          <h3>Robótica</h3>
+          <p>Ensino de robótica e lógica de programação para jovens, desenvolvendo raciocínio lógico e criatividade tecnológica.</p>
+          <span class="tag tag-blue">Teens</span>
+          <span class="tag tag-blue">STEM</span>
+        </div>
+      </div>
+      <div class="curso-card">
+        <div class="curso-img" style="background:#e8f5e9;">🧠</div>
+        <div class="curso-body">
+          <h3>Inteligência Artificial</h3>
+          <p>Curso introdutório sobre IA, ferramentas e impactos no mercado de trabalho. Prepare-se para o futuro.</p>
+          <span class="tag tag-green">Teens</span>
+          <span class="tag tag-green">Adults</span>
+          <span class="tag tag-green">Novo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section id="eventos">
+  <div class="section-inner">
+    <div class="eventos-header">
+      <p class="section-tag">Agenda cultural</p>
+      <h2 class="section-title">Próximos eventos</h2>
+      <p class="section-desc">Eventos culturais que conectam nossos alunos à cultura dos países estudados. Participação e imersão cultural na prática.</p>
+    </div>
+    <div class="eventos-grid">
+      <div class="evento-card">
+        <div class="evento-header">
+          <div class="evento-date">
+            <div class="day">31</div>
+            <div class="month">Out</div>
+          </div>
+          <div class="evento-info">
+            <h3>Halloween Party 2026</h3>
+            <p>A maior festa de Halloween da região! Fantasias, jogos, músicas e imersão na cultura americana. Aberto para toda a comunidade.</p>
+          </div>
+        </div>
+        <div class="evento-footer">
+          <span>🕰 A partir das 14h · Sede CNA Osasco</span>
+          <a href="#contato">Inscreva-se</a>
+        </div>
+      </div>
+      <div class="evento-card">
+        <div class="evento-header">
+          <div class="evento-date" style="background:var(--gold);">
+            <div class="day">12</div>
+            <div class="month">Dez</div>
+          </div>
+          <div class="evento-info">
+            <h3>Christmas Celebration</h3>
+            <p>Apresentações dos alunos em inglês e espanhol, decoração natalina, música ao vivo e confraternização de fim de ano.</p>
+          </div>
+        </div>
+        <div class="evento-footer">
+          <span>🕰 A partir das 15h · Auditório</span>
+          <a href="#contato">Inscreva-se</a>
+        </div>
+      </div>
+      <div class="evento-card">
+        <div class="evento-header">
+          <div class="evento-date" style="background:#1a56db;">
+            <div class="day">28</div>
+            <div class="month">Jun</div>
+          </div>
+          <div class="evento-info">
+            <h3>Culture Week 2026</h3>
+            <p>Uma semana de imersão cultural com workshops, filmes, culinária típica e apresentações sobre países de língua inglesa e espanhola.</p>
+          </div>
+        </div>
+        <div class="evento-footer">
+          <span>🕰 Semana inteira · Vários horários</span>
+          <a href="#contato">Inscreva-se</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="section-inner">
+    <p class="section-tag">Nossos momentos</p>
+    <h2 class="section-title">Galeria de fotos</h2>
+    <p class="section-desc">Confira os melhores momentos dos nossos eventos culturais e atividades nas turmas.</p>
+    <div class="galeria-grid">
+      <div class="galeria-item" style="background:linear-gradient(135deg,#3a0a14,#7a1020);font-size:64px;">
+        🎃
+        <div class="galeria-label">Halloween Party 2025</div>
+      </div>
+      <div class="galeria-item" style="background:linear-gradient(135deg,#1a3a5e,#2a5a8e);">
+        🎄
+        <div class="galeria-label">Christmas 2025</div>
+      </div>
+      <div class="galeria-item" style="background:linear-gradient(135deg,#0d3a1a,#1a5c2a);">
+        🌍
+        <div class="galeria-label">Culture Week</div>
+      </div>
+      <div class="galeria-item" style="background:linear-gradient(135deg,#3a2a00,#6a4e00);">
+        🤖
+        <div class="galeria-label">Robótica — Feira STEM</div>
+      </div>
+      <div class="galeria-item" style="background:linear-gradient(135deg,#2a003a,#4a0070);">
+        🎤
+        <div class="galeria-label">Apresentação de alunos</div>
+      </div>
+      <div class="galeria-item" style="background:linear-gradient(135deg,#001a3a,#003a7a);">
+        📚
+        <div class="galeria-label">Aula de conversação</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="section-inner">
+    <p class="section-tag">O que dizem nossos alunos</p>
+    <h2 class="section-title">Depoimentos</h2>
+    <div class="dep-grid">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Aprendi inglês do zero no CNA Osasco e hoje trabalho em uma multinacional. Os professores são incríveis e os eventos culturais fizeram toda a diferença na minha fluência."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">AM</div>
+          <div>
+            <div class="dep-name">Ana Melo</div>
+            <div class="dep-course">Inglês Adults · 3 anos</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Meu filho entrou tímido e hoje se apresenta em inglês no palco! O Halloween Party foi o evento mais incrível que ele já participou. Vale muito a pena."</p>
+        <div class="dep-author">
+          <div class="dep-avatar" style="background:var(--gold);color:#333;">RS</div>
+          <div>
+            <div class="dep-name">Roberto Silva</div>
+            <div class="dep-course">Pai de aluno — CNA Kids</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"O curso de Robótica mudou a forma como minha filha vê a tecnologia. Ela quer ser engenheira agora! Os professores são muito dedicados e atenciosos."</p>
+        <div class="dep-author">
+          <div class="dep-avatar" style="background:#1a56db;">LC</div>
+          <div>
+            <div class="dep-name">Luciana Costa</div>
+            <div class="dep-course">Mãe de aluna — Robótica Teens</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <p class="section-tag">Fale conosco</p>
+    <h2 class="section-title">Entre em contato</h2>
+    <p class="section-desc">Preencha o formulário e nossa equipe entrará em contato para apresentar os cursos e condições de matrícula.</p>
+    <div class="contato-grid">
+      <div class="contato-info">
+        <h3>Informações da unidade</h3>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div>
+            <h4>Endereço</h4>
+            <p>Rua Antonio Agú, 1279<br/>Centro — Osasco, SP</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div>
+            <h4>Telefone</h4>
+            <p>(11) 2576-4436</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📱</div>
+          <div>
+            <h4>Instagram</h4>
+            <p>@cnaosascocentro</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div>
+            <h4>Horário de atendimento</h4>
+            <p>Segunda a Sexta: 8h às 21h<br/>Sábado: 8h às 14h</p>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:#fff0f2;border-radius:10px;border-left:3px solid var(--red);">
+          <p style="font-size:13px;color:var(--gray);"><strong style="color:var(--red);">Primeiro mês gratuito</strong> para novos alunos que se matricularem em qualquer curso de idiomas em julho de 2026. Consulte condições!</p>
+        </div>
+      </div>
+      <div>
+        <form onsubmit="handleSubmit(event)" style="background:white;border:1px solid #ebebeb;border-radius:14px;padding:28px;">
+          <h3 style="font-size:17px;font-weight:600;margin-bottom:20px;">Formulário de pré-matrícula</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" placeholder="Seu nome" required/>
+            </div>
+            <div class="form-group">
+              <label>Telefone / WhatsApp *</label>
+              <input type="tel" placeholder="(11) 9 0000-0000" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" placeholder="seu@email.com"/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Curso de interesse *</label>
+              <select required>
+                <option value="">Selecione...</option>
+                <option>Inglês — Kids</option>
+                <option>Inglês — Teens</option>
+                <option>Inglês — Adults</option>
+                <option>Espanhol</option>
+                <option>Robótica</option>
+                <option>Inteligência Artificial</option>
+                <option>Programação</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Faixa etária</label>
+              <select>
+                <option value="">Selecione...</option>
+                <option>6 a 10 anos</option>
+                <option>11 a 14 anos</option>
+                <option>15 a 17 anos</option>
+                <option>18 anos ou mais</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mensagem (opcional)</label>
+            <textarea placeholder="Dúvidas, horário preferido ou outras informações..."></textarea>
+          </div>
+          <button type="submit" class="btn-form">Enviar solicitação de matrícula</button>
+          <p class="form-note">Entraremos em contato em até 24 horas úteis &#9989;</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-badge">CNA</div>
+          <div>
+            <div class="logo-text">CNA Osasco Centro</div>
+            <div class="logo-sub" style="color:#666;">Idiomas & Cultura</div>
+          </div>
+        </div>
+        <p>Há mais de 8 anos formando alunos em idiomas e tecnologia em Osasco e região. Fazemos parte da maior rede de escolas de idiomas do Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Cursos</h4>
+        <a href="#cursos">Inglês</a>
+        <a href="#cursos">Espanhol</a>
+        <a href="#cursos">Robótica</a>
+        <a href="#cursos">Inteligência Artificial</a>
+        <a href="#cursos">Programação</a>
+      </div>
+      <div class="footer-col">
+        <h4>Institucional</h4>
+        <a href="#eventos">Eventos culturais</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+        <a href="#contato">Matrículas</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 CNA Osasco Centro. Todos os direitos reservados.</p>
+      <p>Rua Antonio Agú, 1279 · Centro · Osasco — SP · (11) 2576-4436</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/551125764436" class="wa-float" target="_blank" title="Fale no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.523 5.838L.057 23.928a.5.5 0 00.614.614l6.163-1.461A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.5-5.241-1.375l-.374-.215-3.88.919.934-3.82-.233-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  var btn = e.target.querySelector('.btn-form');
+  btn.textContent = '✅ Solicitação enviada!';
+  btn.style.background = '#2e7d32';
+  btn.disabled = true;
+  setTimeout(function(){
+    btn.textContent = 'Enviar solicitação de matrícula';
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 3000);
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+</script>
+</body>
+</html>
